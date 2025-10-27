@@ -47,3 +47,4 @@ echo "  3. Add any secrets needed (Android keystore, etc.)"
 echo ""
 echo "Your project is now fully automated! 🤖"
 
+

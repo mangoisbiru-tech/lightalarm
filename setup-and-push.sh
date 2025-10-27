@@ -104,3 +104,4 @@ else
     echo "📍 Repository URL: https://github.com/mangoisbiru-tech/lightalarm"
 fi
 
+
