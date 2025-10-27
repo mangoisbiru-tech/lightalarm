@@ -1,0 +1,50 @@
+[
+    {
+        "merged": "com.lightalarm.nativeapp-mergeDebugResources-69:/layout/item_sound.xml",
+        "source": "com.lightalarm.nativeapp-main-72:/layout/item_sound.xml"
+    },
+    {
+        "merged": "C:\\Users\\lau_w\\.gradle\\daemon\\8.11.1\\com.lightalarm.nativeapp-mergeDebugResources-69:\\layout\\item_sound.xml",
+        "source": "C:\\Users\\lau_w\\.gradle\\daemon\\8.11.1\\com.lightalarm.nativeapp-main-72:\\layout\\item_sound.xml"
+    },
+    {
+        "merged": "C:\\Users\\lau_w\\.gradle\\daemon\\8.11.1\\com.lightalarm.nativeapp-mergeDebugResources-69:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\lau_w\\.gradle\\daemon\\8.11.1\\com.lightalarm.nativeapp-main-72:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\lau_w\\.gradle\\daemon\\8.11.1\\com.lightalarm.nativeapp-mergeDebugResources-69:\\layout\\item_alarm.xml",
+        "source": "C:\\Users\\lau_w\\.gradle\\daemon\\8.11.1\\com.lightalarm.nativeapp-main-72:\\layout\\item_alarm.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-mergeDebugResources-69:/layout/activity_theme_picker.xml",
+        "source": "com.lightalarm.nativeapp-main-72:/layout/activity_theme_picker.xml"
+    },
+    {
+        "merged": "C:\\Users\\lau_w\\.gradle\\daemon\\8.11.1\\com.lightalarm.nativeapp-mergeDebugResources-69:\\layout\\activity_sound_picker.xml",
+        "source": "C:\\Users\\lau_w\\.gradle\\daemon\\8.11.1\\com.lightalarm.nativeapp-main-72:\\layout\\activity_sound_picker.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-mergeDebugResources-69:/layout/item_alarm.xml",
+        "source": "com.lightalarm.nativeapp-main-72:/layout/item_alarm.xml"
+    },
+    {
+        "merged": "C:\\Users\\lau_w\\.gradle\\daemon\\8.11.1\\com.lightalarm.nativeapp-mergeDebugResources-69:\\layout\\activity_theme_picker.xml",
+        "source": "C:\\Users\\lau_w\\.gradle\\daemon\\8.11.1\\com.lightalarm.nativeapp-main-72:\\layout\\activity_theme_picker.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-mergeDebugResources-69:/layout/activity_sound_picker.xml",
+        "source": "com.lightalarm.nativeapp-main-72:/layout/activity_sound_picker.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-mergeDebugResources-69:/layout/activity_alarm.xml",
+        "source": "com.lightalarm.nativeapp-main-72:/layout/activity_alarm.xml"
+    },
+    {
+        "merged": "C:\\Users\\lau_w\\.gradle\\daemon\\8.11.1\\com.lightalarm.nativeapp-mergeDebugResources-69:\\layout\\activity_add_alarm.xml",
+        "source": "C:\\Users\\lau_w\\.gradle\\daemon\\8.11.1\\com.lightalarm.nativeapp-main-72:\\layout\\activity_add_alarm.xml"
+    },
+    {
+        "merged": "C:\\Users\\lau_w\\.gradle\\daemon\\8.11.1\\com.lightalarm.nativeapp-mergeDebugResources-69:\\layout\\activity_alarm.xml",
+        "source": "C:\\Users\\lau_w\\.gradle\\daemon\\8.11.1\\com.lightalarm.nativeapp-main-72:\\layout\\activity_alarm.xml"
+    }
+]

@@ -1,0 +1,170 @@
+[
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/drawable_sunrise_animation.xml.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/drawable/sunrise_animation.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/drawable_button_background.xml.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/drawable/button_background.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/drawable_aurora_1_night.xml.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/drawable/aurora_1_night.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/drawable_aurora_animation.xml.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/drawable/aurora_animation.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/xml_backup_rules.xml.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/raw_classicalarm_ringtone_wav.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/raw/classicalarm_ringtone_wav"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/raw_ambiencesound_street_basketball_wav.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/raw/ambiencesound_street_basketball_wav"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/raw_naturalsound_relaxing_sea_mp3.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/raw/naturalsound_relaxing_sea_mp3"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/drawable_status_background.xml.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/drawable/status_background.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/drawable_ic_cloud.xml.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/drawable/ic_cloud.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/drawable_sunrise_3_day.xml.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/drawable/sunrise_3_day.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/layout_activity_theme_picker.xml.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/layout/activity_theme_picker.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/drawable_button_stop_alarm.xml.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/drawable/button_stop_alarm.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/drawable_rounded_button_background.xml.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/drawable/rounded_button_background.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/raw_classicalarm_alarm3_wav.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/raw/classicalarm_alarm3_wav"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/layout_item_sound.xml.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/layout/item_sound.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/raw_classicalarm_digital_alarm_wav.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/raw/classicalarm_digital_alarm_wav"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/raw_classicalarm_polite_warning_wav.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/raw/classicalarm_polite_warning_wav"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/drawable_sunrise_1_night.xml.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/drawable/sunrise_1_night.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/raw_ambiencesound_airport_luggage_wheels_on_bricks_wav.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/raw/ambiencesound_airport_luggage_wheels_on_bricks_wav"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/layout_activity_main.xml.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/raw_naturalsound_forest_sounds_wav.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/raw/naturalsound_forest_sounds_wav"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/raw_naturalsound_underwater_flac.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/raw/naturalsound_underwater_flac"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/layout_activity_add_alarm.xml.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/layout/activity_add_alarm.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/layout_activity_alarm.xml.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/layout/activity_alarm.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/xml_data_extraction_rules.xml.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/raw_classicalarm_alarm2_wav.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/raw/classicalarm_alarm2_wav"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/layout_activity_sound_picker.xml.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/layout/activity_sound_picker.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/raw_ambiencesound_cafe_wav.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/raw/ambiencesound_cafe_wav"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/layout_item_alarm.xml.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/layout/item_alarm.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/drawable_aurora_3_morning.xml.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/drawable/aurora_3_morning.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/drawable_aurora_2_dancing.xml.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/drawable/aurora_2_dancing.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/drawable_sunrise_2_dawn.xml.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/drawable/sunrise_2_dawn.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/raw_ambiencesound_school_wav.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/raw/ambiencesound_school_wav"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-merged_res-66:/drawable_control_background.xml.flat",
+        "source": "com.lightalarm.nativeapp-main-67:/drawable/control_background.xml"
+    }
+]

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#ff6b35">
+
+    <!-- Header -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select Alarm Sound"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#422d22"
+        android:gravity="center"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Category Selection -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Category:"
+        android:textSize="16sp"
+        android:textColor="#422d22"
+        android:layout_marginBottom="8dp" />
+
+    <Spinner
+        android:id="@+id/categorySpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:padding="12dp" />
+
+    <!-- Selected Sound Display -->
+    <TextView
+        android:id="@+id/selectedSoundText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No sound selected"
+        android:textSize="14sp"
+        android:textColor="#422d22"
+        android:background="@android:color/transparent"
+        android:padding="8dp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Sound List -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Available Sounds:"
+        android:textSize="16sp"
+        android:textColor="#422d22"
+        android:layout_marginBottom="8dp" />
+
+    <ListView
+        android:id="@+id/soundListView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="4dp" />
+
+    <!-- Action Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:text="Cancel"
+            android:background="#ffa500"
+            android:textColor="#422d22"
+            android:padding="12dp" />
+
+        <Button
+            android:id="@+id/selectButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="Select"
+            android:background="#ffa500"
+            android:textColor="#422d22"
+            android:padding="12dp"
+            android:enabled="false" />
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
+
+
+
+
+
+

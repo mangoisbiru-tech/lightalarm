@@ -1,0 +1,41 @@
+🎵 HOW TO ADD YOUR CUSTOM ALARM MUSIC 🎵
+
+To use your own music file as the alarm sound:
+
+1. COPY your music file to this folder:
+   C:\Users\lau_w\Desktop\light-alarm-app\public\
+
+2. RENAME your music file to:
+   alarm-music.mp3
+
+   (or alarm-music.wav, alarm-music.m4a, etc.)
+
+3. In the app settings, select "Custom Music File" as your alarm sound
+
+4. REBUILD the app:
+   cd C:\Users\lau_w\Desktop\light-alarm-app
+   npm run build
+   npx cap sync android
+
+SUPPORTED FORMATS:
+- MP3 (.mp3) - Best compatibility
+- WAV (.wav) - High quality
+- M4A (.m4a) - Good compression
+- OGG (.ogg) - Web standard
+
+TIPS:
+- Keep file size under 10MB for best performance
+- Use clear, upbeat music that will wake you up
+- The music will loop automatically during the alarm
+- The alarm stops when you tap "Stop Alarm"
+
+If your custom file doesn't work, the app will automatically fallback to the built-in "Upbeat Tempo" alarm sound.
+
+Current alarm sounds available:
+✅ Upbeat Tempo - Rapid ascending beeps (heavy sleepers)
+✅ Normal Alarm - Single strong beep pattern
+✅ Normal Alarm 2 - Double beep pattern
+✅ Natural Birdsong - Gentle bird chirps → strong alarm
+✅ Cute & Playful - Soft melody → cheerful alarm
+✅ Cafe Ambience - Low ambient rumble → wake-up beep
+✅ Custom Music File - Your own music!

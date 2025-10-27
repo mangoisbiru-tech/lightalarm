@@ -1,0 +1,291 @@
+# Light Alarm App - Cursor Project Intelligence
+
+## Project Overview
+A NATIVE ANDROID alarm app (React + Capacitor) using gradual light transitions (Nendo-inspired animations) to wake users naturally. 
+
+**CRITICAL:** This is NOT a web app. Web browser is for development ONLY. All features must work natively on Android when phone is locked/screen off.
+
+## Critical Implementation Patterns
+
+### AnimatedBackground Component Structure
+When adding color display to AnimatedBackground animations:
+
+1. **Always create baseColorLayer first:**
+```javascript
+const baseColorLayer = (
+  <div
+    className="absolute inset-0"
+    style={{
+      backgroundColor: color,
+      opacity: 0.8
+    }}
+  />
+);
+```
+
+2. **Add it first in return statement:**
+```javascript
+return (
+  <div className="absolute inset-0 overflow-hidden" style={baseStyle}>
+    {baseColorLayer}  // <-- ALWAYS FIRST
+    {/* Animation elements */}
+  </div>
+);
+```
+
+3. **This applies to ALL animation types:**
+   - gradient
+   - aurora ✅ (done)
+   - waves
+   - sunset
+   - sunrise
+   - dappled
+   - crystalline
+   - spiral
+
+### State Management Philosophy
+- **No Redux/MobX** - Use React hooks exclusively
+- **Refs for intervals** - Always store interval IDs in refs, not state
+- **LocalStorage for persistence** - Settings saved automatically
+- **No prop drilling** - Sub-components defined inside main component to access state directly
+
+### Color & Brightness Logic
+
+**Wake Mode (Alarm):**
+- Progress 0% = First color (dark)
+- Progress 100% = Last color (bright)
+- Brightness: 1% → maxBrightness over pre-alarm duration
+
+**Sleep Mode:**
+- **Colors reversed**: Last color first (bright), first color last (dark)
+- Brightness: High (70-100%) for most of duration, dim to 1% in final 2 min
+- Formula: `reversedColors[Math.floor(progress * (colors.length - 1))]`
+
+### Audio Implementation
+Always use gradual volume increase:
+```javascript
+audio.volume = 0.1; // Start soft
+const volumeInterval = setInterval(() => {
+  if (audio.volume < 1.0) {
+    audio.volume = Math.min(audio.volume + 0.05, 1.0);
+  }
+}, 500);
+```
+
+### Capacitor Plugin Loading
+Always wrap in try-catch with web fallback:
+```javascript
+try {
+  if (window.Capacitor) {
+    LocalNotifications = window.Capacitor.Plugins.LocalNotifications;
+  }
+} catch (error) {
+  console.log('Capacitor plugins not available in web environment');
+}
+```
+
+## User Preferences & Patterns
+
+### Design Philosophy
+- **Minimal UI** - Hide complexity, show what matters
+- **Solid backgrounds** preferred over gradients for tab backgrounds [[memory:9655690]]
+- **Nendo aesthetic** - Animations should be artistic, not gimmicky
+- **Battery awareness** - Warn users when high-intensity animations enabled
+
+### Color Choices
+- **Sleep tab**: Deep blue (#0a1833) for outer background
+- **Comfort light**: Deep red/amber (sleep-friendly)
+- **Default theme**: Sunrise (most natural wake-up)
+
+### Feature Priorities
+1. Reliability (alarms must work)
+2. Aesthetics (beautiful UI/animations)
+3. Customization (user control)
+4. Battery efficiency
+
+## Critical Native Mobile Behaviors
+
+### Phone Locked/Off - Fullscreen Launch
+**FOCUS:** When alarm triggers while phone locked or screen off, app MUST:
+1. Launch automatically from notification
+2. Open in fullscreen mode (entire screen)
+3. Turn screen on via wake lock
+4. Show light animation immediately
+
+**Required Permissions:**
+- `SYSTEM_ALERT_WINDOW` - Draw over other apps
+- `WAKE_LOCK` - Turn screen on
+- `USE_FULL_SCREEN_INTENT` - Fullscreen from notification
+
+**Native Implementation:**
+- Fullscreen intent notification
+- Activity flags: `showWhenLocked`, `turnScreenOn`
+- Wake lock acquisition before showing UI
+
+## Common Workflows
+
+### Development Cycle
+```bash
+# 1. Edit src/App.js
+# 2. Test in browser (localhost:3000)
+# 3. Build for mobile
+npm run build
+npx cap sync android
+
+# 4. Build APK
+cd android
+powershell.exe -Command ".\gradlew.bat assembleDebug"
+
+# APK: android\app\build\outputs\apk\debug\app-debug.apk
+```
+
+### Testing Priority Order
+1. Browser (quick iteration)
+2. Android emulator (native features)
+3. Physical device (real-world validation)
+
+## Known Gotchas
+
+### App.js File Size
+- Currently 59K+ tokens - read in sections, not all at once
+- Use grep/codebase_search for specific areas
+- Refactoring into smaller components is future goal
+
+### Animation Performance
+- RequestAnimationFrame > setInterval for smoothness
+- Always cleanup in useEffect return functions
+- Refs for animation state that doesn't need re-renders
+
+### Android Permissions
+- Battery optimization must be disabled for reliable alarms
+- Exact alarms need special permission on Android 12+
+- Always check permission status on wake tab
+
+### Audio Autoplay
+- Requires user interaction in browser
+- Works automatically in native Android app
+- Always have fallback error handling
+
+## File Locations
+
+### Key Files
+- **Main app**: `src/App.js` (monolithic component)
+- **Styles**: `src/App.css` (minimal, Tailwind handles most)
+- **Config**: `capacitor.config.ts`
+- **Build script**: `build-apk.bat`
+- **Custom music instructions**: `public/CUSTOM-MUSIC-INSTRUCTIONS.txt`
+
+### Backup Pattern
+- Multiple App.backup*.js files present
+- Suggests iterative development approach
+- Keep until confident in current version, then clean up
+
+## Code Style
+
+### Naming Conventions
+- **State**: camelCase (isRunning, currentTheme)
+- **Components**: PascalCase (AnimatedBackground, PermissionBanner)
+- **Constants**: camelCase for objects, UPPER_CASE if truly constant
+- **Functions**: camelCase, descriptive (toggleFullscreen, saveAlarm)
+
+### Component Structure Pattern
+```javascript
+const MyComponent = () => {
+  // 1. State declarations
+  const [state, setState] = useState(initial);
+  
+  // 2. Refs
+  const ref = useRef(null);
+  
+  // 3. Helper functions
+  const helperFunction = () => { };
+  
+  // 4. Effects
+  useEffect(() => { }, [deps]);
+  
+  // 5. Render
+  return <div>...</div>;
+};
+```
+
+### Tailwind Usage
+- **Prefer utility classes** over custom CSS
+- **Common patterns**:
+  - Cards: `bg-white rounded-xl shadow-lg p-6`
+  - Buttons: `px-4 py-2 bg-blue-500 text-white rounded-lg`
+  - Gradients: `bg-gradient-to-br from-X to-Y`
+  - Fullscreen: `fixed inset-0`
+
+## Critical Bugs to Watch For
+
+### AnimatedBackground White Screen
+- **Symptom**: Sleep mode shows white instead of themed colors
+- **Cause**: Missing baseColorLayer in animation return
+- **Fix**: Add `{baseColorLayer}` after opening div in all animation types
+- **Status**: Fixed for aurora/gradient, pending for 6 others
+
+### Interval Memory Leaks
+- **Symptom**: Performance degradation over time
+- **Cause**: Intervals not cleared
+- **Prevention**: Always clear in useEffect cleanup
+```javascript
+useEffect(() => {
+  const interval = setInterval(/* ... */);
+  return () => clearInterval(interval); // CRITICAL
+}, []);
+```
+
+### Audio Context Not Resumed
+- **Symptom**: Alarm sound doesn't play
+- **Cause**: Browser autoplay restrictions
+- **Fix**: Resume context on user interaction
+```javascript
+if (audioContext.state === 'suspended') {
+  await audioContext.resume();
+}
+```
+
+## Evolution Notes
+
+### Recent Changes
+- Fixed AnimatedBackground color display (partial)
+- Changed Sleep tab to deep blue background
+- Removed debug code (console.logs, alerts)
+- Multiple iterations on animation system
+
+### Design Direction
+- Moving toward more polished, production-ready state
+- Focus on reliability over feature addition
+- Preparing for potential refactor (split App.js)
+
+## Testing Checklist
+
+### Before APK Release
+- [ ] All 8 themes display correctly in sleep mode
+- [ ] All animation types show colored backgrounds
+- [ ] Alarm triggers at set time
+- [ ] Notification permissions granted
+- [ ] Haptics work
+- [ ] All audio files load and play
+- [ ] Custom music fallback works
+- [ ] Battery optimization warning shows
+- [ ] Snooze works correctly
+- [ ] Comfort light doesn't drain battery excessively
+
+### Browser vs Native
+- **Works in browser**: UI, state management, animations, settings
+- **Needs native**: Notifications, haptics, reliable alarms, wake locks
+
+## Performance Targets
+- **APK size**: < 50MB
+- **Battery**: < 5% drain per hour for comfort light
+- **Memory**: < 200MB RAM usage
+- **Animations**: 60fps on mid-range devices
+
+## Future Considerations
+- Consider TypeScript migration (currently only .ts config files)
+- Add comprehensive test suite
+- Implement error boundaries
+- Add analytics (if desired)
+- Consider code splitting for faster initial load
+

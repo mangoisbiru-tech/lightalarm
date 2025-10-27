@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Lightning Storm Effect</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Advanced Lightning Storm Effect
+        // Features: Multiple lightning types, atmospheric effects, sound simulation
+        
+        let flashAlpha = 0;
+        let flashDuration = 0;
+        let nextFlashTime = 0;
+        let lightningBolts = [];
+        let boltVisible = false;
+        let boltDuration = 0;
+        let stormIntensity = 0.5; // 0.0 to 1.0
+        let windDirection = 0;
+        let rainDrops = [];
+        let clouds = [];
+        
+        function setup() {
+            createCanvas(windowWidth, windowHeight);
+            nextFlashTime = millis() + random(5000, 10000);
+            
+            // Initialize rain drops
+            for (let i = 0; i < 200; i++) {
+                rainDrops.push({
+                    x: random(width),
+                    y: random(height),
+                    speed: random(2, 8),
+                    length: random(10, 30)
+                });
+            }
+            
+            // Initialize clouds
+            for (let i = 0; i < 5; i++) {
+                clouds.push({
+                    x: random(width),
+                    y: random(height * 0.3),
+                    size: random(100, 300),
+                    opacity: random(30, 80)
+                });
+            }
+        }
+        
+        function draw() {
+            // Dynamic background with storm colors
+            drawStormBackground();
+            
+            // Draw clouds
+            drawClouds();
+            
+            // Draw rain
+            drawRain();
+            
+            // Check for lightning
+            if (millis() >= nextFlashTime) {
+                triggerLightning();
+                nextFlashTime = millis() + random(3000, 8000);
+            }
+            
+            // Handle flash effect
+            if (flashDuration > 0) {
+                flashDuration -= 16;
+                flashAlpha = map(flashDuration, 0, 300, 0, 255);
+                
+                // Multi-layered flash effect
+                fill(255, 255, 255, flashAlpha * 0.8);
+                noStroke();
+                rect(0, 0, width, height);
+                
+                // Purple flash overlay
+                fill(200, 150, 255, flashAlpha * 0.3);
+                rect(0, 0, width, height);
+            }
+            
+            // Handle lightning bolts
+            if (boltVisible && boltDuration > 0) {
+                boltDuration -= 16;
+                drawLightningBolts();
+            } else if (boltVisible && boltDuration <= 0) {
+                boltVisible = false;
+                lightningBolts = [];
+            }
+        }
+        
+        function drawStormBackground() {
+            // Gradient background from dark blue to purple
+            for (let i = 0; i <= height; i++) {
+                let inter = map(i, 0, height, 0, 1);
+                let r = lerp(10, 20, inter);
+                let g = lerp(10, 15, inter);
+                let b = lerp(30, 25, inter);
+                stroke(r, g, b);
+                line(0, i, width, i);
+            }
+        }
+        
+        function drawClouds() {
+            for (let cloud of clouds) {
+                // Animate clouds
+                cloud.x += windDirection * 0.5;
+                if (cloud.x > width + 100) cloud.x = -100;
+                
+                // Draw cloud with noise
+                fill(50, 50, 70, cloud.opacity);
+                noStroke();
+                
+                // Multiple circles for cloud shape
+                for (let i = 0; i < 5; i++) {
+                    let offsetX = noise(cloud.x * 0.01, i) * 50 - 25;
+                    let offsetY = noise(cloud.y * 0.01, i) * 30 - 15;
+                    ellipse(
+                        cloud.x + offsetX, 
+                        cloud.y + offsetY, 
+                        cloud.size * (0.8 + noise(i) * 0.4)
+                    );
+                }
+            }
+        }
+        
+        function drawRain() {
+            stroke(100, 150, 200, 100);
+            strokeWeight(1);
+            
+            for (let drop of rainDrops) {
+                // Animate rain
+                drop.y += drop.speed;
+                drop.x += windDirection * 0.5;
+                
+                // Reset drop when it reaches bottom
+                if (drop.y > height) {
+                    drop.y = -drop.length;
+                    drop.x = random(width);
+                }
+                
+                // Draw rain drop
+                line(drop.x, drop.y, drop.x, drop.y + drop.length);
+            }
+        }
+        
+        function triggerLightning() {
+            // Start flash effect
+            flashDuration = 300;
+            flashAlpha = 255;
+            
+            // Generate multiple lightning bolts
+            lightningBolts = [];
+            let boltCount = random(1, 4);
+            
+            for (let i = 0; i < boltCount; i++) {
+                let startX = random(width * 0.1, width * 0.9);
+                let bolt = generateAdvancedBolt(startX, 0, random(0.3, 0.7));
+                lightningBolts.push(bolt);
+            }
+            
+            boltVisible = true;
+            boltDuration = random(80, 150);
+            
+            // Update wind direction
+            windDirection = random(-2, 2);
+        }
+        
+        function generateAdvancedBolt(startX, startY, intensity) {
+            let bolt = {
+                path: [],
+                branches: [],
+                type: random(['forked', 'zigzag', 'spiral'])
+            };
+            
+            // Generate main bolt path
+            bolt.path = generateBoltPath(startX, startY, 0, height, 0, intensity);
+            
+            // Add branches based on bolt type
+            if (bolt.type === 'forked') {
+                addForkedBranches(bolt, intensity);
+            } else if (bolt.type === 'spiral') {
+                addSpiralBranches(bolt, intensity);
+            }
+            
+            return bolt;
+        }
+        
+        function generateBoltPath(startX, startY, angle, maxLength, depth, intensity) {
+            let path = [];
+            let currentX = startX;
+            let currentY = startY;
+            let currentAngle = angle;
+            let segmentLength = 0;
+            let totalLength = 0;
+            let zigzagOffset = 0;
+            
+            path.push({x: currentX, y: currentY});
+            
+            while (totalLength < maxLength && currentY < height) {
+                // Calculate segment length based on intensity
+                segmentLength = random(8, 25) * (1 - depth * 0.4) * intensity;
+                
+                // Add zigzag pattern
+                if (random() < 0.3) {
+                    zigzagOffset = random(-20, 20);
+                }
+                
+                // Add angle variation
+                currentAngle += random(-0.4, 0.4) + zigzagOffset * 0.01;
+                
+                // Calculate next point
+                let nextX = currentX + cos(currentAngle) * segmentLength;
+                let nextY = currentY + sin(currentAngle) * segmentLength;
+                
+                // Add horizontal drift
+                nextX += random(-15, 15) + windDirection;
+                
+                // Constrain to screen
+                nextX = constrain(nextX, 0, width);
+                
+                path.push({x: nextX, y: nextY});
+                
+                currentX = nextX;
+                currentY = nextY;
+                totalLength += segmentLength;
+                
+                // Add branching
+                if (random() < 0.15 * intensity && depth < 3) {
+                    let branchAngle = currentAngle + random(-PI/2, PI/2);
+                    let branchLength = random(40, 120) * intensity;
+                    let branchPath = generateBoltPath(currentX, currentY, branchAngle, branchLength, depth + 1, intensity * 0.8);
+                    bolt.branches.push(branchPath);
+                }
+            }
+            
+            return path;
+        }
+        
+        function addForkedBranches(bolt, intensity) {
+            // Add multiple fork points
+            for (let i = 0; i < 3; i++) {
+                let forkPoint = bolt.path[Math.floor(random(bolt.path.length * 0.3, bolt.path.length * 0.8))];
+                let forkAngle = random(-PI/3, PI/3);
+                let forkLength = random(60, 150) * intensity;
+                let forkPath = generateBoltPath(forkPoint.x, forkPoint.y, forkAngle, forkLength, 1, intensity * 0.7);
+                bolt.branches.push(forkPath);
+            }
+        }
+        
+        function addSpiralBranches(bolt, intensity) {
+            // Add spiral branches
+            for (let i = 0; i < 2; i++) {
+                let spiralPoint = bolt.path[Math.floor(random(bolt.path.length * 0.4, bolt.path.length * 0.9))];
+                let spiralAngle = random(-PI/4, PI/4);
+                let spiralLength = random(80, 200) * intensity;
+                let spiralPath = generateSpiralBolt(spiralPoint.x, spiralPoint.y, spiralAngle, spiralLength, intensity);
+                bolt.branches.push(spiralPath);
+            }
+        }
+        
+        function generateSpiralBolt(startX, startY, angle, maxLength, intensity) {
+            let path = [];
+            let currentX = startX;
+            let currentY = startY;
+            let currentAngle = angle;
+            let spiralRadius = 0;
+            let spiralSpeed = 0.1;
+            
+            path.push({x: currentX, y: currentY});
+            
+            for (let i = 0; i < maxLength; i += 5) {
+                spiralRadius += 0.5;
+                currentAngle += spiralSpeed;
+                
+                let nextX = currentX + cos(currentAngle) * 8 + sin(i * 0.1) * spiralRadius;
+                let nextY = currentY + sin(currentAngle) * 8 + 5;
+                
+                path.push({x: nextX, y: nextY});
+                currentX = nextX;
+                currentY = nextY;
+            }
+            
+            return path;
+        }
+        
+        function drawLightningBolts() {
+            for (let bolt of lightningBolts) {
+                // Draw main bolt
+                drawBoltPath(bolt.path, 4, 255);
+                
+                // Draw branches
+                for (let branch of bolt.branches) {
+                    drawBoltPath(branch, 2, 200);
+                }
+            }
+        }
+        
+        function drawBoltPath(path, weight, alpha) {
+            if (path.length < 2) return;
+            
+            // Main bolt
+            strokeWeight(weight);
+            stroke(220, 240, 255, alpha);
+            
+            for (let i = 0; i < path.length - 1; i++) {
+                let segmentAlpha = map(i, 0, path.length, alpha, alpha * 0.3);
+                stroke(220, 240, 255, segmentAlpha);
+                line(path[i].x, path[i].y, path[i + 1].x, path[i + 1].y);
+            }
+            
+            // Glow effect
+            strokeWeight(weight * 3);
+            stroke(150, 180, 255, alpha * 0.3);
+            for (let i = 0; i < path.length - 1; i++) {
+                line(path[i].x, path[i].y, path[i + 1].x, path[i + 1].y);
+            }
+        }
+        
+        function windowResized() {
+            resizeCanvas(windowWidth, windowHeight);
+        }
+        
+        // Mouse interaction
+        function mousePressed() {
+            triggerLightning();
+        }
+        
+        // Keyboard controls
+        function keyPressed() {
+            if (key === ' ') {
+                triggerLightning();
+            } else if (key === 'r') {
+                // Reset storm
+                nextFlashTime = millis() + random(5000, 10000);
+                lightningBolts = [];
+                boltVisible = false;
+            }
+        }
+    </script>
+</body>
+</html>
+
+

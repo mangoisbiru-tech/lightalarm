@@ -1,0 +1,70 @@
+name: Documentation
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'memory-bank/**'
+      - 'README.md'
+      - 'src/**'
+  schedule:
+    # Run daily at 6 AM UTC to check for stale documentation
+    - cron: '0 6 * * *'
+
+jobs:
+  validate-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Check memory bank completeness
+      run: |
+        # Check if all core memory bank files exist and are not empty
+        core_files=("memory-bank/projectbrief.md" "memory-bank/productContext.md" "memory-bank/activeContext.md" "memory-bank/systemPatterns.md" "memory-bank/techContext.md" "memory-bank/progress.md")
+
+        for file in "${core_files[@]}"; do
+          if [ ! -f "$file" ]; then
+            echo "❌ Missing core file: $file"
+            exit 1
+          fi
+
+          if [ ! -s "$file" ]; then
+            echo "⚠️ Empty core file: $file"
+          fi
+
+          # Check if file was updated recently (within 30 days)
+          if [ $(find "$file" -mtime +30) ]; then
+            echo "⚠️ Stale documentation: $file (older than 30 days)"
+          fi
+        done
+
+        echo "✅ All core memory bank files present"
+
+    - name: Check README
+      run: |
+        if [ ! -f "README.md" ] || [ ! -s "README.md" ]; then
+          echo "⚠️ README.md is missing or empty"
+        fi
+
+    - name: Validate package.json
+      run: |
+        if [ ! -f "package.json" ]; then
+          echo "❌ package.json is missing"
+          exit 1
+        fi
+
+        # Check if scripts section exists
+        if ! grep -q '"scripts":' package.json; then
+          echo "⚠️ No scripts section in package.json"
+        fi
+

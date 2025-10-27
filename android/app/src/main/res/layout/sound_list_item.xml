@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="12dp"
+    android:background="@drawable/sound_item_background"
+    android:layout_marginBottom="4dp">
+
+    <!-- Sound Name -->
+    <TextView
+        android:id="@+id/soundNameText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Sound Name"
+        android:textSize="16sp"
+        android:textColor="#422d22"
+        android:gravity="center_vertical"
+        android:padding="8dp" />
+
+    <!-- Preview Button -->
+    <ImageButton
+        android:id="@+id/previewButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/preview_button_background"
+        android:text="▶️"
+        android:textSize="16sp"
+        android:scaleType="center"
+        android:contentDescription="Preview sound" />
+
+</LinearLayout>
+
+
+
+
+
+
+
+

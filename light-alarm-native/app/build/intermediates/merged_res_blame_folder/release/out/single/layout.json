@@ -1,0 +1,30 @@
+[
+    {
+        "merged": "com.lightalarm.nativeapp-mergeReleaseResources-65:/layout/activity_alarm.xml",
+        "source": "com.lightalarm.nativeapp-main-67:/layout/activity_alarm.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-mergeReleaseResources-65:/layout/item_alarm.xml",
+        "source": "com.lightalarm.nativeapp-main-67:/layout/item_alarm.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-mergeReleaseResources-65:/layout/activity_sound_picker.xml",
+        "source": "com.lightalarm.nativeapp-main-67:/layout/activity_sound_picker.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-mergeReleaseResources-65:/layout/activity_theme_picker.xml",
+        "source": "com.lightalarm.nativeapp-main-67:/layout/activity_theme_picker.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-mergeReleaseResources-65:/layout/item_sound.xml",
+        "source": "com.lightalarm.nativeapp-main-67:/layout/item_sound.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-mergeReleaseResources-65:/layout/activity_main.xml",
+        "source": "com.lightalarm.nativeapp-main-67:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.lightalarm.nativeapp-mergeReleaseResources-65:/layout/activity_add_alarm.xml",
+        "source": "com.lightalarm.nativeapp-main-67:/layout/activity_add_alarm.xml"
+    }
+]
